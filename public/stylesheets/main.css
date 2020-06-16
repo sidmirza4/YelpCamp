@@ -1,0 +1,39 @@
+.thumbnail img {
+	width: 100%;
+}
+
+.thumbnail {
+	padding: 0;
+}
+
+.thumbnail .caption-full  {
+	padding: 9px;
+}
+
+.delete-form {
+	display: inline;
+}
+
+#map{
+	height: 400px;
+	width: 100px;
+}
+
+#forgotForm {
+	width: 50%;
+	margin: 0 auto;
+}
+
+#resetForm{
+	width: 50%;
+	margin: 0 auto;
+}
+
+#forgotButton{
+	display: inline;
+}
+
+#loginButton{
+	display: inline;
+	float: right;
+}
