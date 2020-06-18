@@ -37,3 +37,8 @@
 	display: inline;
 	float: right;
 }
+
+.thumbnail .campImages {
+	width: 100%;
+	height: 225px;
+}

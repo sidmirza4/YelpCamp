@@ -5,16 +5,34 @@ var middleware = require("../middleware");   // it automatically takes the conte
 
 
 //   INDEX - show all campgrounds
-router.get("/", function(req, res){	
-	// Get all campgrounds from DB
-	Campground.find({}, function(err,allCampgrounds){
-		if(err){
-			console.log(err);
-		} else{
-			res.render("campgrounds/index", {campgrounds: allCampgrounds});
-		}
-	});
+router.get("/", function(req, res){
+	var noMatch;
+	if(req.query.search){
+		const regex = new RegExp(escapeRegex(req.query.search), 'gi');
+		Campground.find({name: regex}, function(err,allCampgrounds){
+			if(err){
+				console.log(err);
+			} else{
+				if(allCampgrounds.length < 1){
+					noMatch = "No campground found, please try again..!"
+				}
+				res.render("campgrounds/index", {campgrounds: allCampgrounds, noMatch: noMatch});
+			}
+		});
+	}
+	else{
+		// Get all campgrounds from DB
+		Campground.find({}, function(err,allCampgrounds){
+			if(err){
+				console.log(err);
+			} else{
+				res.render("campgrounds/index", {campgrounds: allCampgrounds, noMatch: noMatch});
+			}
+		});
+	}
 });
+
+	
 
 //  NEW  -  show the form to user
 router.get("/new" , middleware.isLoggedIn ,function(req, res){
@@ -99,7 +117,9 @@ router.delete("/:id", middleware.checkCampgroundOwnership, function(req,res){
 });
 
 
-
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+};
 
 
 
