@@ -30,6 +30,9 @@
 				<img src = "<%= campground.image %>" alt = "Could not load image!" class = "campImages">
 				<div class = "caption">
 					<h4><%= campground.name %></h4>
+					<div>
+					   <span class="badge label-primary"><i class="fas fa-thumbs-up"></i> <%= campground.likes.length %></span>
+				   </div>
 				</div>
 				<p>
 					<a class = "btn btn-primary" href = "/campgrounds/<%=campground._id%>">More Info</a>
