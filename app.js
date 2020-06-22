@@ -15,9 +15,10 @@ var express			= require("express"),
 	seedDB			= require("./seeds");
 
 // requiring routes
-var commentRoutes 		= require("./routes/comments"),
-	campgroundRoutes 	= require("./routes/campgrounds"),
-	indexRoutes			= require("./routes/index");
+var commentRoutes    = require("./routes/comments"),
+    reviewRoutes     = require("./routes/reviews"),
+    campgroundRoutes = require("./routes/campgrounds"),
+    indexRoutes      = require("./routes/index")
 
 mongoose.set('useFindAndModify', false);
 mongoose.set('useUnifiedTopology', true);
@@ -57,6 +58,7 @@ app.use(function(req, res, next){
 app.use(indexRoutes);
 app.use("/campgrounds", campgroundRoutes);
 app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/campgrounds/:id/reviews", reviewRoutes);
 
 app.listen(3000, process.env.IP, function(){
 	console.log("Server has started");

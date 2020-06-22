@@ -42,3 +42,7 @@
 	width: 100%;
 	height: 225px;
 }
+
+.checked {
+    color: orange;
+}
